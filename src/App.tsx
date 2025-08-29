@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./index.css";
+import { Menu } from "./components/Menu";
+import { Timetable } from "./components/Timetable";
 
-function App() {
-  const [count, setCount] = useState(0)
+type Direction = "CAJ-CBO" | "CBO-CAJ" | "CAJ-CDO" | "CDO-CAJ";
+
+export default function App() {
+  const [direction, setDirection] = useState<Direction>("CAJ-CBO");
+  const [saturdayOn, setSaturdayOn] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="mainwrapper">
+      <Menu
+        direction={direction}
+        setDirection={setDirection}
+        saturdayOn={saturdayOn}
+        setSaturdayOn={setSaturdayOn}
+      />
 
-export default App
+      <div className="top">
+        <div className="stations">
+        </div>
+      </div>
+
+      <Timetable direction={direction} saturdayOn={saturdayOn} />
+    </div>
+  );
+}
