@@ -31,7 +31,7 @@ Aqui você encontra, direto no navegador, os horários organizados dos ramais **
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/horarios-vlt.git
+git clone https://github.com/jgaqueiroz/horarios-vlt.git
 cd horarios-vlt
 ```
 Instale as dependências:
