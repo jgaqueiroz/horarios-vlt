@@ -118,8 +118,10 @@ tbody td:last-child  { border-right: none; }   /* <- sem borda na última coluna
 .dim-saturday { opacity: 0.2; }
 
 /* destaque do próximo horário (linha inteira) */
-.highlight-row {
+.highlight-row,
+.highlight-row td {
   background: var(--highlight) !important;
+  color: #000 !important;
 }
 
 /* ----- MENU FIXO NO RODAPÉ ----- */
