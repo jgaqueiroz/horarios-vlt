@@ -1,5 +1,7 @@
 # ⏰ Horários VLT – Recife (Linha Diesel)
 
+[![Abrir Horários VLT](https://img.shields.io/badge/🌐%20Acessar%20o%20App-horariosvlt.effecta.com.br-blue?style=for-the-badge)](https://horariosvlt.effecta.com.br)
+
 Bem-vindo(a) ao **Horários VLT**, um app simples, rápido e bonitão para consultar os horários dos trens da **Linha Diesel** do Metrô do Recife.  
 
 Aqui você encontra, direto no navegador, os horários organizados dos ramais **Cabo** e **Curado** – sem precisar de PDF perdido, foto borrada ou planilha escondida em algum grupo do WhatsApp. 🙃
