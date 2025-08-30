@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# ⏰ Horários VLT – Recife (Linha Diesel)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo(a) ao **Horários VLT**, um app simples, rápido e bonitão para consultar os horários dos trens da **Linha Diesel** do Metrô do Recife.  
 
-Currently, two official plugins are available:
+Aqui você encontra, direto no navegador, os horários organizados dos ramais **Cabo** e **Curado** – sem precisar de PDF perdido, foto borrada ou planilha escondida em algum grupo do WhatsApp. 🙃
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚇 O que é esse app?
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Lista todos os **horários das viagens** de ida e volta dos ramais **Cabo (CAJ ↔ CBO)** e **Curado (CAJ ↔ CDO)**.  
+- Visual limpo, responsivo e que funciona direto no celular.  
+- Suporte para **filtro de sábado** (menos viagens, tudo destacado bonitinho).  
+- A **próxima viagem** fica **realçada**, para você não perder o trem.  
+- Troca de ramal fácil com botões fixos no rodapé.  
+- Efeito de **transição suave**: ao trocar de ramal, a tabela desliza como se fosse um carrossel. 😍
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologias usadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)  
+- TypeScript  
+- CSS puro (com variáveis e um toque de carinho 💛)  
+- Deploy automático com GitHub Actions + SSH  
+
+---
+
+## 👩‍💻 Como rodar localmente
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/horarios-vlt.git
+cd horarios-vlt
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Instale as dependências:
+```bash
+npm install
 ```
+Rode em modo desenvolvimento:
+```bash
+npm run dev
+```
+Acesse em: http://localhost:5173
+
+Build de produção:
+```bash
+npm run build
+```
+---
+## 🌐 Deploy
+
+O app é estático, então o conteúdo do diretório dist/ pode ser hospedado em qualquer servidor web (Apache, Nginx, GitHub Pages, etc.).
+
+Neste projeto usamos deploy automático via GitHub Actions:
+a cada git push main, o app é buildado e enviado direto para o servidor.
+
+---
+
+## 🤔 Por que esse app?
+
+Porque consultar horários de trem no Recife não precisa ser difícil.
+Agora você abre o site, escolhe o ramal e pronto: sabe se dá tempo de comprar a coxinha ou se é melhor correr pra plataforma. 🥐➡️🚉
+
+---
+
+## ⚖️ Licença
+
+Este projeto é livre para uso e adaptação.
+A ideia é simples: facilitar a vida de quem usa o trem todo dia. 🚆✨
