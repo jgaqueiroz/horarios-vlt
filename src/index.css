@@ -2,42 +2,208 @@
   --brand-red: #b10f0f;
   --brand-blue: #141f75;
   --bg: #fff;
+  --bg-footer: #1c1c1c;
   --text: #111;
   --muted: #e8e8e8;
+  --highlight: #ffdb70;
+
+  /* altura do rodapé (menu fixo) */
+  --footer-h: 64px;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); }
 
-.mainwrapper { max-width: 960px; margin: 0 auto; padding: 12px; }
+.menu,
+.menuSelected,
+thead th,
+tbody td,
+.highlight-row {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
 
-.menufooter { position: sticky; top: 0; background: var(--bg); z-index: 10; padding: 8px; border-bottom: 1px solid #ddd; }
-.menu-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+.mainwrapper {
+  /* layout de app: cabeçalho (thead) no topo, lista no meio, menu fixo no rodapé */
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----- ÁREA SCROLLÁVEL (tabela) ----- */
+.table-wrapper {
+  /* ocupa o espaço entre topo (thead sticky) e rodapé (menu fixo) */
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0 calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+}
+
+/* tabela */
+table { width: 100%; border-collapse: collapse; }
+
+/* Cabeçalho fixo no topo (sem bordas verticais) */
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: center;
+  padding: 8px;
+  background: #fafafa;  /* valor padrão; será sobrescrito pelo tema do ramal */
+  border-bottom: 1px solid #eee;
+  border-right: none;   /* <- sem linhas verticais no thead */
+  font-size: 1.5em;
+  font-weight: 700;
+
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0 2px 0 rgba(0,0,0,.05);
+}
+
+/* Tema do cabeçalho por ramal */
+.theme-red table thead th {
+  background: var(--brand-red) !important;
+  color: #fff !important;
+}
+.theme-blue table thead th {
+  background: var(--brand-blue) !important;
+  color: #fff !important;
+}
+
+/* Corpo da tabela */
+tbody td {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #f2f2f2;
+  border-right: 1px solid #e2e2e2;
+}
+
+/* zebra */
+tbody tr:nth-child(even) td { background: var(--muted); }
+
+/* remover bordas onde não deve haver separador vertical */
+tbody td:first-child { border-right: none; }   /* <- sem borda na coluna do índice */
+tbody td:last-child  { border-right: none; }   /* <- sem borda na última coluna */
+
+/* coluna dos índices (1ª coluna) */
+.trip-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  width: 3ch;
+  color: #a1a1a1;
+}
+
+/* linhas “apagadas” no filtro de sábado */
+.dim-saturday { opacity: 0.2; }
+
+/* destaque do próximo horário (linha inteira) */
+.highlight-row {
+  background: var(--highlight) !important;
+}
+
+/* ----- MENU FIXO NO RODAPÉ ----- */
+.menufooter {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--footer-h);
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg-footer);
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 10px rgba(0,0,0,.05);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-row {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0; /* ← importante: remove o espaço entre botões */
+}
 
 .menu {
+  font-family: inherit;
   padding: 10px 12px;
   border: 1px solid #ccc;
   background: #f7f7f7;
-  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 1.5em;
+  min-height: 40px;
+
+  border-radius: 0;      /* ← padrão: sem arredondamento */
 }
-.menuSelected { background: var(--brand-red); color: #fff; border-color: var(--brand-red); }
 
-.top { margin: 12px 0 8px; }
-.stations { display: grid; gap: 4px; grid-auto-flow: column; justify-content: space-between; font-weight: 700; }
-
-.table-wrapper { overflow: auto; border: 1px solid #eee; border-radius: 10px; }
-table { width: 100%; border-collapse: collapse; }
-thead th {
-  text-align: center; padding: 8px; background: #fafafa; border-bottom: 1px solid #eee;
+/* arredondar apenas os extremos */
+.menu:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
-tbody td {
-  text-align: center; padding: 8px; border-bottom: 1px solid #f2f2f2;
+
+.menu:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
-tbody tr:nth-child(even) td { background: var(--muted); }
-.trip-number { text-align: right; font-variant-numeric: tabular-nums; width: 60px; }
 
-.dim-saturday { opacity: 0.2; }
+/* evitar borda dupla entre os botões */
+.menu + .menu {
+  border-left: none;
+}
 
-.highlight { outline: 2px solid #ffbf00; box-shadow: 0 0 0 3px rgba(255,191,0,.2) inset; border-radius: 6px; }
+.menuSelected {
+  background: #1c1c1c !important;
+  color: #ffcc00 !important;
+  border: none;
+}
+
+/* CONTÊINER do carrossel (oculta as laterais) */
+.slider {
+  position: relative;
+  height: 100%;
+  overflow: hidden;      /* importante para esconder os slides fora da tela */
+}
+
+/* TRILHO: 4 slides lado a lado (um para cada direção) */
+.slides {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.35s ease; /* ← animação suave */
+  will-change: transform;
+}
+
+/* Cada SLIDE ocupa 100% da largura e é uma coluna (thead fixo + corpo rolável) */
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Evita interações em slides fora de foco */
+.slide[aria-hidden="true"] {
+  pointer-events: none;
+}

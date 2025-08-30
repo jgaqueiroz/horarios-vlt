@@ -30,7 +30,7 @@ export function Timetable({ direction, saturdayOn }: Props) {
       <table>
         <thead>
           <tr>
-            <th scope="col" className="trip-number">#</th>
+            <th scope="col" className="trip-number"></th>
             {cols.map((c) => (
               <th key={c} scope="col">{c}</th>
             ))}
@@ -43,23 +43,19 @@ export function Timetable({ direction, saturdayOn }: Props) {
             const isNext = nextIdx === i;
 
             return (
-              <tr key={i} className={shouldDim ? "dim-saturday" : ""}>
+              <tr
+                key={i}
+                className={`${shouldDim ? "dim-saturday" : ""} ${isNext ? "highlight-row" : ""}`}
+              >
                 <td className="trip-number">{i + 1}</td>
                 {r.map((cell, j) => (
-                  <td key={j} className={isNext ? "highlight" : ""}>{cell}</td>
+                  <td key={j}>{cell}</td>
                 ))}
               </tr>
             );
           })}
         </tbody>
       </table>
-      <div style={{ fontSize: 12, padding: "8px 6px", color: "#666" }}>
-        Agora: <b>{now}</b> — Próxima partida destacada.
-        { saturdayOn
-            ? <span> Filtro de sábado ativo: algumas viagens foram reduzidas.</span>
-            : <span> Mostrando todas as viagens (dias úteis).</span>
-        }
-      </div>
     </div>
   );
 }
