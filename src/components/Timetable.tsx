@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { buildRow, findNextIndex, nowHHMM, toMinutes } from "../lib/time";
 import { headers, legs, saturdayCut, starts } from "../data/timetables";
 

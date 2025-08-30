@@ -1,5 +1,3 @@
-import React from "react";
-
 type Direction = "CAJ-CBO" | "CBO-CAJ" | "CAJ-CDO" | "CDO-CAJ";
 
 interface Props {
