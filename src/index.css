@@ -95,13 +95,15 @@ thead th {
 tbody td {
   text-align: center;
   padding: 8px;
-  border-bottom: 1px solid #f2f2f2;
-  border-right: 1px solid #e2e2e2;
+  border-bottom: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
   height: 34px;
   vertical-align: middle;
 }
 
 /* zebra */
+tbody tr { --row-base-bg: #fff; }
+tbody tr:nth-child(even) { --row-base-bg: var(--muted); }
 tbody tr:nth-child(even) td { background: var(--muted); }
 
 /* remover bordas onde não deve haver separador vertical */
@@ -120,10 +122,16 @@ tbody td:last-child  { border-right: none; }   /* <- sem borda na última coluna
 .dim-saturday { opacity: 0.2; }
 
 /* destaque do próximo horário (linha inteira) */
-.highlight-row,
-.highlight-row td {
-  background: var(--highlight) !important;
-  color: #000 !important;
+@keyframes pulseHighlight {
+  0%   { background-color: var(--row-base-bg); }
+  50%  { background-color: var(--highlight); border-color: var(--highlight); }
+  100% { background-color: var(--row-base-bg); }
+}
+
+tbody tr.highlight-row td {
+  animation: pulseHighlight 1.2s ease-in-out infinite;
+  color: #000;
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease, opacity .3s ease;
 }
 
 /* ----- MENU FIXO NO RODAPÉ ----- */
