@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import "./index.css";
 import { Menu } from "./components/Menu";
 import { Timetable } from "./components/Timetable";
 import { DIRECTIONS } from "./data/order";
+import "./index.css";
 
 type Direction = "CAJ-CBO" | "CBO-CAJ" | "CAJ-CDO" | "CDO-CAJ";
 
@@ -10,16 +10,18 @@ export default function App() {
   const [direction, setDirection] = useState<Direction>("CAJ-CBO");
   const [saturdayOn, setSaturdayOn] = useState(false);
 
-  const theme = (direction === "CAJ-CBO" || direction === "CBO-CAJ")
-    ? "theme-red" : "theme-blue";
+  const theme =
+    direction === "CAJ-CBO" || direction === "CBO-CAJ"
+      ? "theme-red"
+      : "theme-blue";
 
-  const activeIndex = useMemo(
-    () => DIRECTIONS.indexOf(direction),
-    [direction]
-  );
+  const activeIndex = useMemo(() => DIRECTIONS.indexOf(direction), [direction]);
 
   const themeColor = useMemo(
-    () => (direction === "CAJ-CBO" || direction === "CBO-CAJ") ? "#b10f0f" : "#141f75",
+    () =>
+      direction === "CAJ-CBO" || direction === "CBO-CAJ"
+        ? "#b10f0f"
+        : "#141f75",
     [direction]
   );
 

@@ -11,21 +11,26 @@
   --footer-h: 64px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 .menu,
 .menuSelected,
 thead th,
 tbody td,
 .highlight-row {
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    opacity 0.3s ease;
 }
 tbody tr {
   transition: opacity 220ms ease-in-out;
   will-change: opacity;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -62,7 +67,10 @@ html, body, #root {
 }
 
 /* tabela */
-table { width: 100%; border-collapse: collapse; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
 /* Cabeçalho fixo no topo (sem bordas verticais) */
 thead th {
@@ -71,14 +79,14 @@ thead th {
   z-index: 2;
   text-align: center;
   padding: 8px;
-  background: #fafafa;  /* valor padrão; será sobrescrito pelo tema do ramal */
+  background: #fafafa; /* valor padrão; será sobrescrito pelo tema do ramal */
   border-bottom: 1px solid #eee;
-  border-right: none;   /* <- sem linhas verticais no thead */
+  border-right: none; /* <- sem linhas verticais no thead */
   font-size: 1.5em;
   font-weight: 700;
 
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
-  box-shadow: 0 2px 0 rgba(0,0,0,.05);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Tema do cabeçalho por ramal */
@@ -102,13 +110,23 @@ tbody td {
 }
 
 /* zebra */
-tbody tr { --row-base-bg: #fff; }
-tbody tr:nth-child(even) { --row-base-bg: var(--muted); }
-tbody tr:nth-child(even) td { background: var(--muted); }
+tbody tr {
+  --row-base-bg: #fff;
+}
+tbody tr:nth-child(even) {
+  --row-base-bg: var(--muted);
+}
+tbody tr:nth-child(even) td {
+  background: var(--muted);
+}
 
 /* remover bordas onde não deve haver separador vertical */
-tbody td:first-child { border-right: none; }   /* <- sem borda na coluna do índice */
-tbody td:last-child  { border-right: none; }   /* <- sem borda na última coluna */
+tbody td:first-child {
+  border-right: none;
+} /* <- sem borda na coluna do índice */
+tbody td:last-child {
+  border-right: none;
+} /* <- sem borda na última coluna */
 
 /* coluna dos índices (1ª coluna) */
 .trip-number {
@@ -119,19 +137,29 @@ tbody td:last-child  { border-right: none; }   /* <- sem borda na última coluna
 }
 
 /* linhas “apagadas” no filtro de sábado */
-.dim-saturday { opacity: 0.2; }
+.dim-saturday {
+  opacity: 0.2;
+}
 
 /* destaque do próximo horário (linha inteira) */
 @keyframes pulseHighlight {
-  0%   { background-color: var(--row-base-bg); }
-  50%  { background-color: var(--highlight); border-color: var(--highlight); }
-  100% { background-color: var(--row-base-bg); }
+  0% {
+    background-color: var(--row-base-bg);
+  }
+  50% {
+    background-color: var(--highlight);
+    border-color: var(--highlight);
+  }
+  100% {
+    background-color: var(--row-base-bg);
+  }
 }
 
 tbody tr.highlight-row td {
   animation: pulseHighlight 1.2s ease-in-out infinite;
   color: #000;
-  transition: background-color .3s ease, color .3s ease, border-color .3s ease, opacity .3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, opacity 0.3s ease;
 }
 
 /* ----- MENU FIXO NO RODAPÉ ----- */
@@ -144,7 +172,7 @@ tbody tr.highlight-row td {
   padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px));
   background: var(--bg-footer);
   border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 10px rgba(0,0,0,.05);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   z-index: 3;
   display: flex;
   align-items: center;
@@ -185,7 +213,7 @@ tbody tr.highlight-row td {
 .slider {
   position: relative;
   height: 100%;
-  overflow: hidden;      /* importante para esconder os slides fora da tela */
+  overflow: hidden; /* importante para esconder os slides fora da tela */
 }
 
 /* TRILHO: 4 slides lado a lado (um para cada direção) */

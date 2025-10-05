@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { buildRow, findNextIndex, nowHHMM, toMinutes } from "../lib/time";
 import { headers, legs, saturdayCut, starts } from "../data/timetables";
+import { buildRow, findNextIndex, nowHHMM, toMinutes } from "../lib/time";
 
 type Direction = keyof typeof legs;
 
@@ -23,16 +23,29 @@ export function Timetable({ direction, saturdayOn }: Props) {
   // encontra “próximo horário” com base na primeira coluna (origem)
   const now = nowHHMM();
   const nowMin = toMinutes(now);
-  const nextIdx = useMemo(() => findNextIndex(rows.map(r => r[0]), nowMin), [rows, nowMin]);
+  const nextIdx = useMemo(
+    () =>
+      findNextIndex(
+        rows.map((r) => r[0]),
+        nowMin
+      ),
+    [rows, nowMin]
+  );
 
   return (
-    <div className="table-wrapper" role="region" aria-label={`Horários ${direction}`}>
+    <div
+      className="table-wrapper"
+      role="region"
+      aria-label={`Horários ${direction}`}
+    >
       <table>
         <thead>
           <tr>
             <th scope="col" className="trip-number"></th>
             {cols.map((c) => (
-              <th key={c} scope="col">{c}</th>
+              <th key={c} scope="col">
+                {c}
+              </th>
             ))}
           </tr>
         </thead>
@@ -45,7 +58,9 @@ export function Timetable({ direction, saturdayOn }: Props) {
             return (
               <tr
                 key={i}
-                className={`${shouldDim ? "dim-saturday" : ""} ${isNext ? "highlight-row" : ""}`}
+                className={`${shouldDim ? "dim-saturday" : ""} ${
+                  isNext ? "highlight-row" : ""
+                }`}
               >
                 <td className="trip-number">{i + 1}</td>
                 {r.map((cell, j) => (

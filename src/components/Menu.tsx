@@ -7,13 +7,19 @@ interface Props {
   setSaturdayOn: (v: boolean) => void;
 }
 
-export function Menu({ direction, setDirection, saturdayOn, setSaturdayOn }: Props) {
+export function Menu({
+  direction,
+  setDirection,
+  saturdayOn,
+  setSaturdayOn,
+}: Props) {
   const btn = (label: string, value: Direction, color?: "red" | "blue") => {
     const selected = direction === value;
     const className = "menu" + (selected ? " menuSelected" : "");
-    const style = color === "blue" && selected
-      ? { backgroundColor: "#141f75", color: "white" }
-      : undefined;
+    const style =
+      color === "blue" && selected
+        ? { backgroundColor: "#141f75", color: "white" }
+        : undefined;
 
     return (
       <button

@@ -10,10 +10,13 @@ export function addMinutes(hhmm: string, minutes: number): string {
 
 /** expande uma linha: [t0] + offsets → [t0,t1,t2,...] */
 export function buildRow(start: string, offsets: number[]): string[] {
-  return offsets.reduce<string[]>((cols, mins) => {
-    cols.push(addMinutes(cols.at(-1)!, mins));
-    return cols;
-  }, [start]);
+  return offsets.reduce<string[]>(
+    (cols, mins) => {
+      cols.push(addMinutes(cols.at(-1)!, mins));
+      return cols;
+    },
+    [start]
+  );
 }
 
 /** dado um horário "HH:mm", retorna minutos desde 00:00 (para comparar) */
@@ -23,7 +26,10 @@ export function toMinutes(hhmm: string): number {
 }
 
 /** pega o próximo horário >= agora (em minutos), senão null */
-export function findNextIndex(times: string[], nowMinutes: number): number | null {
+export function findNextIndex(
+  times: string[],
+  nowMinutes: number
+): number | null {
   for (let i = 0; i < times.length; i++) {
     if (toMinutes(times[i]) >= nowMinutes) return i;
   }
